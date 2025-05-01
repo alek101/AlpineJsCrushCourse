@@ -1,9 +1,11 @@
 document.addEventListener('alpine:init',()=>{
-    Alpine.data('counter',()=>({
-        count: 0,
-        name: 'Alek',
-        logCount(){
-            console.log(this.count)
-        }
-    }))
+    // first argument name, second func that returns data
+    Alpine.data('signupForm', () => ({
+        username: '',
+        password: '',
+        passwordConfirm: '',
+        belt: '',
+        bio: '',
+        newsletter: true
+      }))
 })
