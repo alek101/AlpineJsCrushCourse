@@ -7,6 +7,7 @@ document.addEventListener('alpine:init',()=>{
         belt: '',
         bio: '',
         newsletter: true,
+        showPass: false,
 
         submitForm() {
           console.log(this.username, this.password, this.passwordConfirm, this.belt, this.bio, this.newsletter)
