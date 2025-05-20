@@ -69,7 +69,7 @@
       <label>Belt Color:
         <select x-model="belt">
           <option value="">Select a belt</option>
-          <template x-for="belt in beltChoices" :key="choice">
+          <template x-for="(belt, index) in beltChoices" :key="choice">
             <option :value="belt" x-text="belt"></option>
           </template>
         </select>
