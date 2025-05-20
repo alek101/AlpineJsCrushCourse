@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form x-data="signupForm" @submit.prevent="submitForm">
+    <form x-data="signupForm" @submit.prevent="submitForm(event)">
         <h1>Ninja Signup Form</h1>
 
         <button type="button" x-on:click.shift="console.log('click')">click</button>
@@ -29,6 +29,10 @@
               maxlength="15">
           </label>
           <div x-text="username"></div>
+
+          <template x-if="errors.username">
+            <p class="error" x-text="errors.username"></p>
+          </template>
         </div>
     
         <!-- password -->
@@ -42,6 +46,10 @@
             <span x-text="showPass? 'hide': 'show'"></span>
           </button>
           <div x-text="password"></div>
+
+          <template x-if="errors.password">
+            <p class="error" x-text="errors.password"></p>
+          </template>
         </div>
     
         <!-- confirm password -->
@@ -51,6 +59,10 @@
             <input type="password" x-model="passwordConfirm">
           </label>
           <div x-text="passwordConfirm"></div>
+
+          <template x-if="errors.passwordConfirm">
+            <p class="error" x-text="errors.passwordConfirm"></p>
+          </template>
         </div>
     
         <!-- belt color -->
@@ -66,6 +78,10 @@
             </select>
           </label>
           <div x-text="belt"></div>
+
+          <template x-if="errors.belt">
+            <p class="error" x-text="errors.belt"></p>
+          </template>
         </div>
     
         <!-- short bio -->
@@ -78,6 +94,10 @@
             <textarea maxlength="100" x-model="bio"></textarea>
           </label>
           <div x-text="bio"></div>
+
+          <template x-if="errors.bio">
+            <p class="error" x-text="errors.bio"></p>
+          </template>
         </div>
     
         <!-- newsletter signup -->

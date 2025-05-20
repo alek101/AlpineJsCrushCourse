@@ -38,6 +38,7 @@ document.addEventListener('alpine:init',()=>{
         },
 
         submitForm($event) {
+          console.log($event)
             this.validateForm()
 
             if(Object.keys(this.errors).length === 0) {
