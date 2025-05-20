@@ -1,116 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlpineCrushCourse</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlpineCrushCourse</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <form x-data="signupForm" @submit.prevent="submitForm(event)">
-        <h1>Ninja Signup Form</h1>
+  <form x-data="signupForm" @submit.prevent="submitForm(event)">
+    <h1>Ninja Signup Form</h1>
 
-        <button type="button" x-on:click.shift="console.log('click')">click</button>
-        <button type="button" x-on:mouseleave.ctrl="console.log('mouseleave')">mouseleave</button>
-        <button type="button" x-on:dblclick="console.log('dblclick')">dblclick</button>
-        <input type="text" @keyup="console.log('keyup')">
-        <!-- username -->
-        <div class="form-field">
-            <p class="hint" x-bind:class="{'warning': username.length > 10}">
-                <span x-text="15 - username.length"></span> characters remaining
-            </p>
-          <label>
-            <span></span>Username:
-            <input
-              x-model="username" 
-              type="text" 
-              maxlength="15">
-          </label>
-          <div x-text="username"></div>
+    <button type="button" x-on:click.shift="console.log('click')">click</button>
+    <button type="button" x-on:mouseleave.ctrl="console.log('mouseleave')">mouseleave</button>
+    <button type="button" x-on:dblclick="console.log('dblclick')">dblclick</button>
+    <input type="text" @keyup="console.log('keyup')">
+    <!-- username -->
+    <div class="form-field">
+      <p class="hint" x-bind:class="{'warning': username.length > 10}">
+        <span x-text="15 - username.length"></span> characters remaining
+      </p>
+      <label>
+        <span></span>Username:
+        <input x-model="username" type="text" maxlength="15">
+      </label>
+      <div x-text="username"></div>
 
-          <template x-if="errors.username">
-            <p class="error" x-text="errors.username"></p>
+      <template x-if="errors.username">
+        <p class="error" x-text="errors.username"></p>
+      </template>
+    </div>
+
+    <!-- password -->
+    <div class="form-field password">
+      <label>
+        <span>Password:</span>
+        <input :type="showPass? 'text': 'password'" x-model="password">
+      </label>
+
+      <button type="button" @click="showPass = !showPass">
+        <span x-text="showPass? 'hide': 'show'"></span>
+      </button>
+      <div x-text="password"></div>
+
+      <template x-if="errors.password">
+        <p class="error" x-text="errors.password"></p>
+      </template>
+    </div>
+
+    <!-- confirm password -->
+    <div class="form-field">
+      <label>
+        <span>Confirm Password:</span>
+        <input type="password" x-model="passwordConfirm">
+      </label>
+      <div x-text="passwordConfirm"></div>
+
+      <template x-if="errors.passwordConfirm">
+        <p class="error" x-text="errors.passwordConfirm"></p>
+      </template>
+    </div>
+
+    <!-- belt color -->
+    <div class="form-field">
+      <label>Belt Color:
+        <select x-model="belt">
+          <option value="">Select a belt</option>
+          <template x-for="belt in beltChoices" :key="choice">
+            <option :value="belt" x-text="belt"></option>
           </template>
-        </div>
-    
-        <!-- password -->
-        <div class="form-field password">
-          <label>
-            <span>Password:</span>
-            <input :type="showPass? 'text': 'password'" x-model="password" >
-          </label>
+        </select>
+      </label>
+      <div x-text="belt"></div>
 
-          <button type="button" @click="showPass = !showPass">
-            <span x-text="showPass? 'hide': 'show'"></span>
-          </button>
-          <div x-text="password"></div>
+      <template x-if="errors.belt">
+        <p class="error" x-text="errors.belt"></p>
+      </template>
+    </div>
 
-          <template x-if="errors.password">
-            <p class="error" x-text="errors.password"></p>
-          </template>
-        </div>
-    
-        <!-- confirm password -->
-        <div class="form-field">
-          <label>
-            <span>Confirm Password:</span>
-            <input type="password" x-model="passwordConfirm">
-          </label>
-          <div x-text="passwordConfirm"></div>
+    <!-- short bio -->
+    <div class="form-field">
+      <p class="hint" :class="{'warning': bio.length > 90}">
+        <span x-text="100 - bio.length"></span> characters remaining
+      </p>
+      <label>
+        <span>Short Bio:</span>
+        <textarea maxlength="100" x-model="bio"></textarea>
+      </label>
+      <div x-text="bio"></div>
 
-          <template x-if="errors.passwordConfirm">
-            <p class="error" x-text="errors.passwordConfirm"></p>
-          </template>
-        </div>
-    
-        <!-- belt color -->
-        <div class="form-field">
-          <label>Belt Color:
-            <select x-model="belt">
-              <option value="">Select a belt</option>
-              <option value="black">Black</option>
-              <option value="white">White</option>
-              <option value="red">Red</option>
-              <option value="orange">Orange</option>
-              <option value="brown">Brown</option>
-            </select>
-          </label>
-          <div x-text="belt"></div>
+      <template x-if="errors.bio">
+        <p class="error" x-text="errors.bio"></p>
+      </template>
+    </div>
 
-          <template x-if="errors.belt">
-            <p class="error" x-text="errors.belt"></p>
-          </template>
-        </div>
-    
-        <!-- short bio -->
-        <div class="form-field">
-            <p class="hint" :class="{'warning': bio.length > 90}">
-                <span x-text="100 - bio.length"></span> characters remaining
-            </p>
-          <label>
-            <span>Short Bio:</span>
-            <textarea maxlength="100" x-model="bio"></textarea>
-          </label>
-          <div x-text="bio"></div>
+    <!-- newsletter signup -->
+    <div class="form-field newsletter">
+      <label>
+        <input type="checkbox" x-model="newsletter">
+        <span>Sign up for the newsletter</span>
+      </label>
+      <div x-text="newsletter"></div>
+    </div>
 
-          <template x-if="errors.bio">
-            <p class="error" x-text="errors.bio"></p>
-          </template>
-        </div>
-    
-        <!-- newsletter signup -->
-        <div class="form-field newsletter">
-          <label>
-            <input type="checkbox" x-model="newsletter">
-            <span>Sign up for the newsletter</span>
-          </label>
-          <div x-text="newsletter"></div>
-        </div>
-    
-        <!-- submit button -->
-        <button type="submit">Submit</button>
-      </form>
+    <!-- submit button -->
+    <button type="submit">Submit</button>
+  </form>
 </body>
+
 </html>
