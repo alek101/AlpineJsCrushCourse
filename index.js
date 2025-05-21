@@ -51,6 +51,15 @@ document.addEventListener('alpine:init',()=>{
 
               this.success = true;
             }
+          },
+
+          init() {
+            console.log('init lifecycle')
+
+            //watch date for change
+            this.$watch('username',(newOne, oldOne)=>{
+              console.log(this.username, newOne, oldOne)
+            })
           }
       }))
 })
